@@ -9,7 +9,7 @@ export default function Navbar() {
       <Link to="/" className="text-primary font-bold text-4xl pl-20 py-5">
         HNBMG
       </Link>
-      <ul className="text-text flex text-xl pt-7 pr-20">
+      <ul className="text-primary flex text-xl pt-7 pr-20">
         <li>
           <Link to="/" className="mr-8">
             Home
