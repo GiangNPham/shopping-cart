@@ -5,7 +5,7 @@ import "../styles/Navbar.css";
 
 export default function Navbar() {
   return (
-    <nav className="bg-background flex justify-between drop-shadow	">
+    <nav className="bg-background flex justify-between border-b-2 border-accent	">
       <Link to="/" className="text-primary font-bold text-4xl pl-20 py-5">
         HNBMG
       </Link>

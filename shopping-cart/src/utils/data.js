@@ -1,6 +1,6 @@
 export default async function Data() {
   try {
-    const res = await fetch("https://fakestoreapi.com/products?limit=20");
+    const res = await fetch("https://api.escuelajs.co/api/v1/products");
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }

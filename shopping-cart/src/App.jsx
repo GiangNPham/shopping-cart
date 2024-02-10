@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Store from "./pages/Store";
 import { useEffect, useState } from "react";
 import Data from "./utils/data";
 
@@ -19,7 +20,7 @@ b. Sample
 */
 
 function App() {
-  const [item, setItem] = useState([]);
+  const [items, setItems] = useState([]);
   const [featuredItem, setFeaturedItem] = useState([]);
   useEffect(() => {
     (async () => {
@@ -27,7 +28,7 @@ function App() {
       console.log(data);
       setFeaturedItem(data.slice(0, 4));
 
-      setItem(data);
+      setItems(data.slice(0, 10));
     })();
   }, []);
 
@@ -38,10 +39,10 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home item={item} featuredItem={featuredItem} />}
+          element={<Home items={items} featuredItem={featuredItem} />}
         ></Route>
-        {/* <Route path="/store" element={<Store />}></Route>
-        <Route path="/store/:itemId" element={<ItemPage />}></Route> */}
+        <Route path="/store" element={<Store items={items} />}></Route>
+        {/* <Route path="/store/:itemId" element={<ItemPage />}></Route> */}
       </Routes>
     </div>
   );

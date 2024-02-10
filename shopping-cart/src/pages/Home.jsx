@@ -7,7 +7,7 @@ import FeatureItem from "../components/FeatureItem";
 export default function Home({ featuredItem }) {
   return (
     <div className="bg-background">
-      <div className="grid grid-cols-2 border-y-2 py-12 border-accent ">
+      <div className="grid grid-cols-2 border-b-2 py-12 border-accent ">
         <img
           src={logo}
           alt="Logo"
