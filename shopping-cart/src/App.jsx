@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Store from "./pages/Store";
+import ItemPage from "./pages/ItemPage";
 import { useEffect, useState } from "react";
 import Data from "./utils/data";
 
@@ -22,6 +23,12 @@ b. Sample
 function App() {
   const [items, setItems] = useState([]);
   const [featuredItem, setFeaturedItem] = useState([]);
+  const [cart, setCart] = useState([]);
+  const cart1 = [
+    { title: "addf", quantity: 11 },
+    { title: "fdgjdhj", quantity: 12 },
+  ];
+
   useEffect(() => {
     (async () => {
       const data = await Data();
@@ -42,8 +49,22 @@ function App() {
           element={<Home items={items} featuredItem={featuredItem} />}
         ></Route>
         <Route path="/store" element={<Store items={items} />}></Route>
-        {/* <Route path="/store/:itemId" element={<ItemPage />}></Route> */}
+        <Route
+          path="/store/:itemId"
+          element={<ItemPage items={items} cart={cart} setCart={setCart} />}
+        ></Route>
       </Routes>
+
+      {/* Check the cart system */}
+      {/* {cart.length !== 0 &&
+        cart.map((item) => {
+          return (
+            <div key={item.title}>
+              <p>{item.title}</p>
+              <p>{item.quantity}</p>
+            </div>
+          );
+        })} */}
     </div>
   );
 }
