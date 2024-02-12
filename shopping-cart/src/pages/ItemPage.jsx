@@ -43,7 +43,12 @@ export default function ItemPage({ items, cart, setCart }) {
       if (findItem === -1) {
         const newCart = [
           ...cart,
-          { title: cartItem.node.title, quantity: quantity },
+          {
+            title: cartItem.node.title,
+            quantity: quantity,
+            price: cartItem.node.variants.edges[0].node.price.amount,
+            url: cartItem.node.featuredImage.url,
+          },
         ];
         // console.log(newCart);
         setCart(newCart);
@@ -55,7 +60,9 @@ export default function ItemPage({ items, cart, setCart }) {
           ...newCart,
           {
             title: changedItem.title,
+            price: changedItem.price,
             quantity: changedItem.quantity + quantity,
+            url: changedItem.url,
           },
         ]);
       }
@@ -67,7 +74,7 @@ export default function ItemPage({ items, cart, setCart }) {
       {cartItem == null || cartItem.node == null ? (
         <div className="h-screen bg-background">Loading</div>
       ) : (
-        <div className="bg-background min-h-svh	 text-text pt-10 flex flex-col">
+        <div className="bg-background min-h-screen	 text-text pt-10 flex flex-col">
           <div className="grid grid-cols-2 mx-auto">
             <img
               className="w-72 h-72 bg-black rounded justify-self-end	"

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Store from "./pages/Store";
 import ItemPage from "./pages/ItemPage";
+import Cart from "./components/Cart";
 import { useEffect, useState } from "react";
 import Data from "./utils/data";
 
@@ -24,10 +25,11 @@ function App() {
   const [items, setItems] = useState([]);
   const [featuredItem, setFeaturedItem] = useState([]);
   const [cart, setCart] = useState([]);
-  const cart1 = [
-    { title: "addf", quantity: 11 },
-    { title: "fdgjdhj", quantity: 12 },
-  ];
+  const [openCart, setOpenCart] = useState(false);
+  // const cart1 = [
+  //   { title: "addf", quantity: 11 },
+  //   { title: "fdgjdhj", quantity: 12 },
+  // ];
 
   useEffect(() => {
     (async () => {
@@ -41,7 +43,12 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        openCart={openCart}
+        setOpenCart={setOpenCart}
+      />
       {/* <Cart /> */}
       <Routes>
         <Route
@@ -54,6 +61,12 @@ function App() {
           element={<ItemPage items={items} cart={cart} setCart={setCart} />}
         ></Route>
       </Routes>
+      <Cart
+        cart={cart}
+        setCart={setCart}
+        openCart={openCart}
+        setOpenCart={setOpenCart}
+      />
 
       {/* Check the cart system */}
       {/* {cart.length !== 0 &&

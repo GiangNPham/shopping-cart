@@ -2,8 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
+import PropTypes from "prop-types";
 
-export default function Navbar() {
+export default function Navbar({ cart, setOpenCart }) {
+  const openCart = function () {
+    setOpenCart(true);
+  };
+
   return (
     <nav className="bg-background flex justify-between border-b-2 border-accent	">
       <Link to="/" className="text-primary font-bold text-4xl pl-20 py-5">
@@ -21,11 +26,24 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <button>
+          <button
+            className="relative transition duration-150 ease-in-out active:scale-95"
+            onClick={openCart}
+            aria-label="cart"
+          >
             <FontAwesomeIcon icon={faCartShopping} />
+            <span className="absolute right-[-10px] top-[-5px] flex h-[16px] min-w-[16px] items-center justify-center rounded-full bg-red-600 p-0.5 text-xs text-white">
+              {cart.length < 100 ? cart.length : 99 + "+"}
+            </span>
           </button>
         </li>
       </ul>
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  cart: PropTypes.array,
+  setCart: PropTypes.func,
+  setOpenCart: PropTypes.func,
+};
