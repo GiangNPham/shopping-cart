@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
-export default function ItemPage({ items, cart, setCart }) {
+export default function ItemPage({ items, cart, setCart, setCartNumber }) {
   const [cartItem, setCartItem] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { itemId } = useParams();
@@ -12,6 +12,14 @@ export default function ItemPage({ items, cart, setCart }) {
   useEffect(() => {
     setQuantity(1);
   }, [itemId]);
+
+  useEffect(() => {
+    const newCartNumber = cart.reduce(
+      (accumulator, curval) => accumulator + curval.quantity,
+      0
+    );
+    setCartNumber(newCartNumber);
+  }, [cart]);
 
   useEffect(() => {
     const targetItem =
@@ -33,7 +41,7 @@ export default function ItemPage({ items, cart, setCart }) {
     setQuantity(quantity + 1);
   };
 
-  const addToCart = function () {
+  const addToCart = async function () {
     if (isNaN(quantity)) alert("Quanity must be larger than 0");
     else {
       // Check for repeating object
@@ -51,12 +59,12 @@ export default function ItemPage({ items, cart, setCart }) {
           },
         ];
         // console.log(newCart);
-        setCart(newCart);
+        await setCart(newCart);
       } else {
         const newCart = cart.filter((_, index) => index !== findItem);
         const changedItem = cart[findItem];
 
-        setCart([
+        await setCart([
           ...newCart,
           {
             title: changedItem.title,
@@ -125,4 +133,6 @@ ItemPage.propTypes = {
   items: PropTypes.array,
   cart: PropTypes.array,
   setCart: PropTypes.func,
+  cartNumber: PropTypes.number,
+  setCartNumber: PropTypes.func,
 };

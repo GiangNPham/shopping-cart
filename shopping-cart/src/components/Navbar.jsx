@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import PropTypes from "prop-types";
 
-export default function Navbar({ cart, setOpenCart }) {
+export default function Navbar({ setOpenCart, cartNumber }) {
   const openCart = function () {
     setOpenCart(true);
   };
@@ -33,7 +33,7 @@ export default function Navbar({ cart, setOpenCart }) {
           >
             <FontAwesomeIcon icon={faCartShopping} />
             <span className="absolute right-[-10px] top-[-5px] flex h-[16px] min-w-[16px] items-center justify-center rounded-full bg-red-600 p-0.5 text-xs text-white">
-              {cart.length < 100 ? cart.length : 99 + "+"}
+              {cartNumber < 100 ? cartNumber : 99 + "+"}
             </span>
           </button>
         </li>
@@ -46,4 +46,6 @@ Navbar.propTypes = {
   cart: PropTypes.array,
   setCart: PropTypes.func,
   setOpenCart: PropTypes.func,
+  cartNumber: PropTypes.number,
+  setCartNumber: PropTypes.func,
 };

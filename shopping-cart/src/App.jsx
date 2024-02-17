@@ -26,6 +26,7 @@ function App() {
   const [featuredItem, setFeaturedItem] = useState([]);
   const [cart, setCart] = useState([]);
   const [openCart, setOpenCart] = useState(false);
+  const [cartNumber, setCartNumber] = useState(0);
   // const cart1 = [
   //   { title: "addf", quantity: 11 },
   //   { title: "fdgjdhj", quantity: 12 },
@@ -48,6 +49,7 @@ function App() {
         setCart={setCart}
         openCart={openCart}
         setOpenCart={setOpenCart}
+        cartNumber={cartNumber}
       />
       {/* <Cart /> */}
       <Routes>
@@ -58,7 +60,15 @@ function App() {
         <Route path="/store" element={<Store items={items} />}></Route>
         <Route
           path="/store/:itemId"
-          element={<ItemPage items={items} cart={cart} setCart={setCart} />}
+          element={
+            <ItemPage
+              items={items}
+              cart={cart}
+              setCart={setCart}
+              cartNumber={cartNumber}
+              setCartNumber={setCartNumber}
+            />
+          }
         ></Route>
       </Routes>
       <Cart
@@ -66,6 +76,8 @@ function App() {
         setCart={setCart}
         openCart={openCart}
         setOpenCart={setOpenCart}
+        cartNumber={cartNumber}
+        setCartNumber={setCartNumber}
       />
 
       {/* Check the cart system */}
