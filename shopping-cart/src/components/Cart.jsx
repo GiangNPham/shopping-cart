@@ -15,7 +15,6 @@ export default function Cart({
   openCart,
   setOpenCart,
   cartNumber,
-  setCartNumber,
 }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -175,4 +174,5 @@ Cart.propTypes = {
   setCart: PropTypes.func,
   openCart: PropTypes.bool,
   setOpenCart: PropTypes.func,
+  cartNumber: PropTypes.number,
 };
